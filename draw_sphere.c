@@ -56,8 +56,8 @@ static float	*get_ray(int i, int j, float fov, t_res res)
 
 	ray = malloc(sizeof(float) * 3);
 	;
-	ray[0] = (i - res.x / 2);
-	ray[1] = -(j - res.y / 2);
+	ray[0] = (j - res.x / 2);
+	ray[1] = -(i - res.y / 2);
 	ray[2] = res.x / (2 * tan(fov / 2));
 	;
 	normalize(ray);
@@ -110,49 +110,86 @@ static short	intersection(t_sphere *sphere, float ray[3], float **p, float **n)
 	(*n)[1] = (*p)[1] - sphere->coords[1];
 	(*n)[2] = (*p)[2] - sphere->coords[2];
 	normalize(*n);
+	;
 	return (1);
 }
 
 static float	get_lighting(t_light *light, float *p, float *n)
 {
 	
-	float lighting;
-	float l[3];
-	float dot_n_l;
+	float	lighting;
+	float	light_ray[3];
+	float	dot_n_l;
 
-	l[0] = light->coords[0] - p[0];
-	l[1] = light->coords[1] - p[1];
-	l[2] = light->coords[2] - p[2];
-	;
-	normalize(l);
-	;
 	lighting = 0;
 	;
-	dot_n_l = dot(n, l);
-	if (dot_n_l > 0)
-		lighting = light->intensity * dot_n_l / (get_length(n) * get_length(l));
-	;
+	while (light)
+	{
+		light_ray[0] = light->coords[0] - p[0];
+		light_ray[1] = light->coords[1] - p[1];
+		light_ray[2] = light->coords[2] - p[2];
+		;
+		normalize(light_ray);
+		;
+		dot_n_l = dot(n, light_ray);
+		if (dot_n_l > 0)
+			lighting += light->intensity * dot_n_l / (get_length(n) * get_length(light_ray));
+		;
+		light = light->next;
+	}
 	free(p);
 	free(n);
 	return (lighting);
 }
 
+static float	*get_coeff_light(t_light *light, float local_intensity)
+{
+	float *coeff_light;
+	float denom;
+
+	coeff_light = malloc(sizeof(float) * 3);
+	;
+	coeff_light[0] = 0;
+	coeff_light[1] = 0;
+	coeff_light[2] = 0;
+	;
+	denom = 0;
+	;
+	while (light)
+	{
+		coeff_light[0] += local_intensity * light->colors[0] / 255;
+		coeff_light[1] += local_intensity * light->colors[1] / 255;
+		coeff_light[2] += local_intensity * light->colors[2] / 255;
+		;
+		denom++;
+		;
+		light = light->next;
+	}
+	coeff_light[0] /= denom;
+	coeff_light[1] /= denom;
+	coeff_light[2] /= denom;
+	return (coeff_light);
+}
+
 static int		get_color(float obj[3], t_amb *amb, t_light *light, float local_intensity)
 {
 	int		color;
-	float	coeff[3];
+	float	coeff_amb[3];
+	float	*coeff_light;
+	float	denom;
 
-	coeff[0] = amb->ratio * amb->colors[0] / 255 + \
-				light->intensity * local_intensity * light->colors[0] / 255;
-	coeff[1] = amb->ratio * amb->colors[1] / 255 + \
-				light->intensity * local_intensity * light->colors[1] / 255;
-	coeff[2] = amb->ratio * amb->colors[2] / 255 + \
-				light->intensity * local_intensity * light->colors[2] / 255;
+	coeff_amb[0] = amb->ratio * amb->colors[0] / 255;
+	coeff_amb[1] = amb->ratio * amb->colors[1] / 255;
+	coeff_amb[2] = amb->ratio * amb->colors[2] / 255;
+	;
+	coeff_light = get_coeff_light(light, local_intensity);
 	;
 	color = 0;
-	color |= (int)min(255, (obj[0] * coeff[0])) << 16;
-	color |= (int)min(255, (obj[1] * coeff[1])) << 8;
-	color |= (int)min(255, (obj[2] * coeff[2]));
+	color |= (int)min(255, obj[0] * (coeff_amb[0] + coeff_light[0])) << 16;
+	color |= (int)min(255, obj[1] * (coeff_amb[1] + coeff_light[1])) << 8;
+	color |= (int)min(255, obj[2] * (coeff_amb[2] + coeff_light[2]));
+	;
+	free(coeff_light);
 	;
 	return (color);
 }
@@ -168,6 +205,7 @@ void			draw_sphere(void *obj, t_scene *scene, t_img *img)
 	float		*p;
 	float		*n;
 	float		lighting;
+	int k = 0;
 
 	sphere = (t_sphere *)obj;
 	fov = scene->cam->angle * M_PI / 180;
@@ -184,7 +222,8 @@ void			draw_sphere(void *obj, t_scene *scene, t_img *img)
 			{
 				lighting = get_lighting(scene->light, p, n);
 				color = get_color(sphere->colors, scene->amb, scene->light, lighting);
-				pixel_put(img, i, j, color);
+				pixel_put(img, j, i, color);
+				k++;
 			}
 			free(ray);
 			j++;
@@ -217,6 +256,8 @@ int				main(int ac, char **av)
 	draw_sphere(scene->obj_lst->obj, scene, &img);
 	printf("\n 22222222222222\n\n");
 	draw_sphere(scene->obj_lst->next->obj, scene, &img);
+	printf("\n 33333333333333\n\n");
+	draw_sphere(scene->obj_lst->next->next->obj, scene, &img);
 	free(scene->amb->colors);
 	free(scene->amb);
 	free(scene->cam);
