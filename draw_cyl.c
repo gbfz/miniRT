@@ -126,6 +126,56 @@ static float	*get_difference(float centre[3])
 	return (difference);
 }
 
+static float	*get_bottom_cap(t_cylinder *cyl)
+{
+	float *bottom_cap;
+
+	bottom_cap = malloc(sizeof(float) * 3);
+	bottom_cap[0] = cyl->coords[0] - cyl->vector[0] * (cyl->height / 2);
+	bottom_cap[1] = cyl->coords[1] - cyl->vector[1] * (cyl->height / 2);
+	bottom_cap[2] = cyl->coords[2] - cyl->vector[2] * (cyl->height / 2);
+	;
+	return (bottom_cap);
+}
+
+static float	*get_top_cap(t_cylinder *cyl)
+{
+	float *top_cap;
+
+	top_cap = malloc(sizeof(float) * 3);
+	top_cap[0] = cyl->coords[0] + cyl->vector[0] * (cyl->height / 2);
+	top_cap[1] = cyl->coords[1] + cyl->vector[1] * (cyl->height / 2);
+	top_cap[2] = cyl->coords[2] + cyl->vector[2] * (cyl->height / 2);
+	;
+	return (top_cap);
+}
+
+static int		check_borders(t_cylinder *cyl, float t, float ray[3], float *difference)
+{
+	float	m;
+	float	poa[3];
+	float	*bottom_cap;
+	float	*top_cap;
+	int		res;
+
+	m = dot(ray, cyl->vector) * t + dot(difference, cyl->vector);
+	;
+	bottom_cap = get_bottom_cap(cyl);
+	poa[0] = bottom_cap[0] + cyl->vector[0] * m;
+	poa[1] = bottom_cap[1] + cyl->vector[1] * m;
+	poa[2] = bottom_cap[2] + cyl->vector[2] * m;
+	;
+	top_cap = get_top_cap(cyl);
+	;
+	res = 0;
+	if (poa[0] >= bottom_cap[0] && poa[1] >= bottom_cap[1] && poa[2] >= bottom_cap[2] &&
+		poa[0] <= top_cap[0] && poa[1] <= top_cap[1] && poa[2] <= top_cap[2])
+		res = 1;
+	free(bottom_cap);
+	free(top_cap);
+	return (res);
+}
+
 static int		intersection(t_cylinder *cyl, float ray[3], float **p, float **n)
 {
 	float a;
@@ -133,27 +183,30 @@ static int		intersection(t_cylinder *cyl, float ray[3], float **p, float **n)
 	float c;
 	float *difference;
 	float disc;
-	float m;
 	float t[3];
 
 	difference = get_difference(cyl->coords);
 	a = dot(ray, ray) - pow(dot(ray, cyl->vector), 2);
 	b = (dot(ray, difference) - dot(ray, cyl->vector) * dot(difference, cyl->vector)) * 2;
 	c = dot(difference, difference) - pow(dot(difference, cyl->vector), 2) - pow(cyl->diameter / 2, 2);
-	free(difference);
 	;
 	disc = b * b - 4 * a * c;
 	if (disc < 0)
+	{
+		free(difference);
 		return (0);
-	disc = sqrt(disc);
-	t[1] = (-b - disc) / (2 * a);
-	t[2] = (-b + disc) / (2 * a);
-	if (t[1] < t[2])
+	}
+	t[1] = (-b - sqrt(disc)) / (2 * a);
+	t[2] = (-b + sqrt(disc)) / (2 * a);
+	if (check_borders(cyl, t[1], ray, difference) == 1)
 		t[0] = t[1];
-	else
+	else if (check_borders(cyl, t[2], ray, difference) == 1)
 		t[0] = t[2];
-	if (t[0] < 0)
+	else
+	{
+		free(difference);
 		return (0);
+	}
 	;
 	*p = malloc(sizeof(float) * 3);
 	(*p)[0] = ray[0] * t[0];
@@ -166,6 +219,7 @@ static int		intersection(t_cylinder *cyl, float ray[3], float **p, float **n)
 	(*n)[2] = (*p)[2] - cyl->coords[2];
 	normalize(*n);
 	;
+	free(difference);
 	return (1);
 }
 
@@ -180,7 +234,6 @@ void			draw_cylinder(void *obj, t_scene *scene, t_img *img)
 	float		lighting;
 	float		*p;
 	float		*n;
-	int k = 0;
 
 	cy = (t_cylinder *)obj;
 	fov = scene->cam->angle * M_PI / 180;
