@@ -150,7 +150,7 @@ static float	*get_top_cap(t_cylinder *cyl)
 	return (top_cap);
 }
 
-static int		check_borders(t_cylinder *cyl, float t, float ray[3], float *difference)
+static int		check_borders(t_cylinder *cyl, float t, float ray[3], float o_c[3])
 {
 	float	m;
 	float	poa[3];
@@ -158,7 +158,7 @@ static int		check_borders(t_cylinder *cyl, float t, float ray[3], float *differe
 	float	*top_cap;
 	int		res;
 
-	m = dot(ray, cyl->vector) * t + dot(difference, cyl->vector);
+	m = dot(ray, cyl->vector) * t + dot(o_c, cyl->vector);
 	;
 	bottom_cap = get_bottom_cap(cyl);
 	poa[0] = bottom_cap[0] + cyl->vector[0] * m;
@@ -176,50 +176,58 @@ static int		check_borders(t_cylinder *cyl, float t, float ray[3], float *differe
 	return (res);
 }
 
+static float	*get_point(float ray[3], float t)
+{
+	float *point;
+
+	point = malloc(sizeof(float) * 3);
+	point[0] = ray[0] * t;
+	point[1] = ray[1] * t;
+	point[2] = ray[2] * t;
+	;
+	return (point);
+}
+
+static float	*get_normal(float point[3], float centre[3])
+{
+	float *normal;
+
+	normal = malloc(sizeof(float) * 3);
+	normal[0] = point[0] - centre[0];
+	normal[1] = point[1] - centre[1];
+	normal[2] = point[2] - centre[2];
+	;
+	normalize(normal);
+	;
+	return (normal);
+}
+
 static int		intersection(t_cylinder *cyl, float ray[3], float **p, float **n)
 {
-	float a;
-	float b;
-	float c;
-	float *difference;
+	float eq[3];
+	float o_c[3];
 	float disc;
 	float t[3];
 
-	difference = get_difference(cyl->coords);
-	a = dot(ray, ray) - pow(dot(ray, cyl->vector), 2);
-	b = (dot(ray, difference) - dot(ray, cyl->vector) * dot(difference, cyl->vector)) * 2;
-	c = dot(difference, difference) - pow(dot(difference, cyl->vector), 2) - pow(cyl->diameter / 2, 2);
-	;
-	disc = b * b - 4 * a * c;
+	o_c[0] = -cyl->coords[0];
+	o_c[1] = -cyl->coords[1];
+	o_c[2] = -cyl->coords[2];
+	eq[0] = dot(ray, ray) - pow(dot(ray, cyl->vector), 2);
+	eq[1] = (dot(ray, o_c) - dot(ray, cyl->vector) * dot(o_c, cyl->vector)) * 2;
+	eq[2] = dot(o_c, o_c) - pow(dot(o_c, cyl->vector), 2) - pow(cyl->diameter / 2, 2);
+	disc = eq[1] * eq[1] - 4 * eq[0] * eq[2];
 	if (disc < 0)
-	{
-		free(difference);
 		return (0);
-	}
-	t[1] = (-b - sqrt(disc)) / (2 * a);
-	t[2] = (-b + sqrt(disc)) / (2 * a);
-	if (check_borders(cyl, t[1], ray, difference) == 1)
+	t[1] = (-eq[1] - sqrt(disc)) / (2 * eq[0]);
+	t[2] = (-eq[1] + sqrt(disc)) / (2 * eq[0]);
+	if (check_borders(cyl, t[1], ray, o_c) == 1)
 		t[0] = t[1];
-	else if (check_borders(cyl, t[2], ray, difference) == 1)
+	else if (check_borders(cyl, t[2], ray, o_c) == 1)
 		t[0] = t[2];
 	else
-	{
-		free(difference);
 		return (0);
-	}
-	;
-	*p = malloc(sizeof(float) * 3);
-	(*p)[0] = ray[0] * t[0];
-	(*p)[1] = ray[1] * t[0];
-	(*p)[2] = ray[2] * t[0];
-	;
-	*n = malloc(sizeof(float) * 3);
-	(*n)[0] = (*p)[0] - cyl->coords[0];
-	(*n)[1] = (*p)[1] - cyl->coords[1];
-	(*n)[2] = (*p)[2] - cyl->coords[2];
-	normalize(*n);
-	;
-	free(difference);
+	*p = get_point(ray, t[0]);
+	*n = get_normal(*p, cyl->coords);
 	return (1);
 }
 
@@ -248,7 +256,10 @@ void			draw_cylinder(void *obj, t_scene *scene, t_img *img)
 			{
 				lighting = get_lighting(scene->light, p, n);
 				color = get_color(cy->colors, scene->amb, scene->light, lighting);
-				pixel_put(img, j, i, color);
+				if (p[0] == cy->coords[0] && p[1] == cy->coords[1] && p[2] == cy->coords[2])
+					pixel_put(img, j, i, 0x00FFFFFF);
+				else
+					pixel_put(img, j, i, color);
 			}
 			free(ray);
 			j++;
