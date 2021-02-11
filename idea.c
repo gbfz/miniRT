@@ -5,6 +5,10 @@ static void     get_o_c(t_cylinder *cyl, float o_c[3)
     o_c[2] = -cyl->coords[2];
 }
 
+// check_if_within_border should return m
+// (which is set to 0 if point is outside borders)
+// and normal should be calculated not from coords, but from m * coords
+
 static int		intersection(t_cylinder *cyl, float ray[3], float **p, float **n)
 {
 	float eq[3];
