@@ -1,214 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_square.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/14 19:12:59 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/12 14:26:51 by meldora          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/minirt.h"
 
-#include <stdio.h>
-#include <unistd.h>
-
-
-void			pixel_put(t_img *img, int x, int y, int color)
+static double	get_orient(double p[3], double p1[3], double p2[3], double *n)
 {
-	char	*dst;
+	double o;
+	double *c;
+	double v1[3];
+	double v2[3];
 
-	dst = img->addr + (y * img->ll + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-static float	min(float a, float b)
-{
-	if (a > b)
-		return (b);
-	return (a);
-}
-
-static float	get_lighting(t_light *light, float *p, float *n)
-{
-	
-	float	lighting;
-	float	light_ray[3];
-	float	dot_n_l;
-
-	lighting = 0;
+	v1[0] = p1[0] - p[0];
+	v1[1] = p1[1] - p[1];
+	v1[2] = p1[2] - p[2];
 	;
-	while (light)
-	{
-		light_ray[0] = light->coords[0] - p[0];
-		light_ray[1] = light->coords[1] - p[1];
-		light_ray[2] = light->coords[2] - p[2];
-		;
-		normalize(light_ray);
-		;
-		dot_n_l = dot(n, light_ray);
-		if (dot_n_l > 0)
-			lighting += light->intensity * dot_n_l / (get_length(n) * get_length(light_ray));
-		;
-		light = light->next;
-	}
-	free(p);
-	return (lighting);
-}
-
-static float	*get_coeff_light(t_light *light, float local_intensity)
-{
-	float *coeff_light;
-	float denom;
-
-	coeff_light = malloc(sizeof(float) * 3);
-	coeff_light[0] = 0;
-	coeff_light[1] = 0;
-	coeff_light[2] = 0;
+	v2[0] = p2[0] - p[0];
+	v2[1] = p2[1] - p[1];
+	v2[2] = p2[2] - p[2];
 	;
-	denom = 0;
-	while (light)
-	{
-		coeff_light[0] += local_intensity * light->colors[0] / 255;
-		coeff_light[1] += local_intensity * light->colors[1] / 255;
-		coeff_light[2] += local_intensity * light->colors[2] / 255;
-		denom++;
-		light = light->next;
-	}
-	coeff_light[0] /= denom;
-	coeff_light[1] /= denom;
-	coeff_light[2] /= denom;
-	;
-	return (coeff_light);
-}
-
-static int		get_color(float obj[3], t_amb *amb, t_light *light, float local_intensity)
-{
-	int		color;
-	float	coeff_amb[3];
-	float	*coeff_light;
-	float	denom;
-
-	coeff_amb[0] = amb->ratio * amb->colors[0] / 255;
-	coeff_amb[1] = amb->ratio * amb->colors[1] / 255;
-	coeff_amb[2] = amb->ratio * amb->colors[2] / 255;
-	;
-	coeff_light = get_coeff_light(light, local_intensity);
-	;
-	color = 0;
-	color |= (int)min(255, obj[0] * (coeff_amb[0] + coeff_light[0])) << 16;
-	color |= (int)min(255, obj[1] * (coeff_amb[1] + coeff_light[1])) << 8;
-	color |= (int)min(255, obj[2] * (coeff_amb[2] + coeff_light[2]));
-	;
-	free(coeff_light);
-	;
-	return (color);
-}
-
-static float	*get_ray(int i, int j, float fov, t_res res)
-{
-	float	*ray;
-
-	ray = malloc(sizeof(float) * 3);
-	;
-	ray[0] = (j - res.x / 2);
-	ray[1] = -(i - res.y / 2);
-	ray[2] = res.x / (2 * tan(fov / 2));
-	;
-	normalize(ray);
-	;
-	return (ray);
-}
-
-static float	*get_rand_vec(float v[3])
-{
-	float *rand_vec;
-
-	rand_vec = malloc(sizeof(float) * 3);
-	;
-	rand_vec[0] = v[2];
-	rand_vec[1] = v[0];
-	rand_vec[2] = v[1];
-	;
-	return (rand_vec);
-}
-
-static float	**alloc_vertices(void)
-{
-	float **vertices;
-
-	vertices = malloc(sizeof(*vertices) * 4);
-	vertices[0] = malloc(sizeof(float) * 3);
-	vertices[1] = malloc(sizeof(float) * 3);
-	vertices[2] = malloc(sizeof(float) * 3);
-	vertices[3] = malloc(sizeof(float) * 3);
-	return (vertices);
-}
-
-static void		get_planes(float vector[3], float rand_vec[3], float **plane, float **c)
-{
-	*plane = cross(vector, rand_vec);
-	normalize(*plane);
-	*c = cross(vector, *plane);
-	normalize(*c);
-}
-
-static float	**get_vertices(t_square *sq)
-{
-	float **vertices;
-	float *rand_vec;
-	float *plane;
-	float *c;
-	float half_side;
-
-	vertices = alloc_vertices();
-	rand_vec = get_rand_vec(sq->vector);
-	get_planes(sq->vector, rand_vec, &plane, &c);
-	half_side = sq->side / 2;
-	// left bottom
-	vertices[0][0] = (sq->coords[0] - half_side * plane[0]) + (half_side * c[0]);
-	vertices[0][1] = (sq->coords[1] - half_side * plane[1]) + (half_side * c[1]);
-	vertices[0][2] = (sq->coords[2] - half_side * plane[2]) + (half_side * c[2]);
-	// right bottom
-	vertices[1][0] = (sq->coords[0] - half_side * plane[0]) - (half_side * c[0]);
-	vertices[1][1] = (sq->coords[1] - half_side * plane[1]) - (half_side * c[1]);
-	vertices[1][2] = (sq->coords[2] - half_side * plane[2]) - (half_side * c[2]);
-	// right top
-	vertices[2][0] = (sq->coords[0] + half_side * plane[0]) - (half_side * c[0]);
-	vertices[2][1] = (sq->coords[1] + half_side * plane[1]) - (half_side * c[1]);
-	vertices[2][2] = (sq->coords[2] + half_side * plane[2]) - (half_side * c[2]);
-	// left top
-	vertices[3][0] = (sq->coords[0] + half_side * plane[0]) + (half_side * c[0]);
-	vertices[3][1] = (sq->coords[1] + half_side * plane[1]) + (half_side * c[1]);
-	vertices[3][2] = (sq->coords[2] + half_side * plane[2]) + (half_side * c[2]);
-	for (int i = 0; i <= 3; i++)
-	{
-		for (int j = 0; j <= 2; j++)
-			printf("v[%d][%d] = %f\n", i, j, vertices[i][j]);
-		printf("\n");
-	}
-	free(plane);
+	c = cross(v1, v2);
+	o = dot(c, n);
 	free(c);
-	return (vertices);
+	return (o);
 }
 
-int				main(int ac, char **av)
+static void		set_current_params(double t, double point[3],
+									t_square *sq, t_params *current)
 {
-	void		*mlx;
-	void		*win;
-	t_img		img;
-	t_scene		*scene;
-	int			config;
+	current->id = 2;
+	current->colors = sq->colors;
+	current->point = point;
+	current->normal = malloc(sizeof(double) * 3);
+	ft_memcpy(current->normal, sq->vector, sizeof(double) * 3);
+}
 
-	if (check_file(ac, av[1]) == -1)
-		return (1);
-	config = open(av[1], O_RDONLY);
-	scene = parser(config);
-	close(config);
-	if (scene == NULL)
-		return (1);
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, scene->res.x, scene->res.y, "kruzhochek");
-	img.img = mlx_new_image(mlx, scene->res.x, scene->res.y);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.en);
-	printf("\n 11111111111111\n\n");
-	get_vertices(scene->obj_lst->obj);
-	//draw_square(scene->obj_lst->obj, scene, &img);
-	//free(scene->amb->colors);
-	//free(scene->amb);
-	//free(scene->cam);
-	//free(scene->obj_lst->obj);
-	mlx_put_image_to_window(mlx, win, img.img, 0, 0);
-	mlx_loop(mlx);
+static double	no_inter_free(double **p)
+{
+	free(*p);
+	*p = NULL;
 	return (0);
+}
+
+static void		set_c_o(double c_o[3], double coords[3], double origin[3])
+{
+	c_o[0] = coords[0] - origin[0];
+	c_o[1] = coords[1] - origin[1];
+	c_o[2] = coords[2] - origin[2];
+}
+
+static int		check_if_within_borders(double point[3], t_square *sq)
+{
+	if (get_orient(point, sq->vertices[0], sq->vertices[1], sq->vector) >= 0)
+		return (no_inter_free(&point));
+	if (get_orient(point, sq->vertices[1], sq->vertices[2], sq->vector) >= 0)
+		return (no_inter_free(&point));
+	if (get_orient(point, sq->vertices[2], sq->vertices[3], sq->vector) >= 0)
+		return (no_inter_free(&point));
+	if (get_orient(point, sq->vertices[3], sq->vertices[0], sq->vector) >= 0)
+		return (no_inter_free(&point));
+	return (1);
+}
+
+double			intersect_square(void *obj, double ray[3],
+								t_params *current, double origin[3])
+{
+	t_square	*sq;
+	double		dot_n_ray;
+	double		t;
+	double		*point;
+	double		c_o[3];
+
+	sq = (t_square *)obj;
+	dot_n_ray = dot(sq->vector, ray);
+	if (fabs(dot_n_ray) < 0.000001)
+		return (0);
+	set_c_o(c_o, sq->coords, origin);
+	t = dot(c_o, sq->vector) / dot_n_ray;
+	if (t < 0)
+		return (0);
+	point = get_point(origin, ray, t);
+	if (check_if_within_borders(point, sq) == 0)
+		return (0);
+	if (current != NULL)
+		set_current_params(t, point, sq, current);
+	else
+		free(point);
+	return (t);
 }

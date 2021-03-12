@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quaternion_operations.h                            :+:      :+:    :+:   */
+/*   get_point.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 11:28:45 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/02 16:30:28 by meldora          ###   ########.fr       */
+/*   Created: 2021/02/14 15:38:37 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/02 16:29:30 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef QUATERNION_OPERATIONS_H
-# define QUATERNION_OPERATIONS_H
+#include "includes/minirt.h"
 
-# include <stdlib.h>
-# include <math.h>
-# include "vector_operations.h"
+double	*get_point(double origin[3], double ray[3], double t)
+{
+	double *point;
 
-#include <stdio.h>
-
-double	get_angle(double u[3], double v[3]);
-void	normalize_quaternion(double q[4]);
-double	*get_quaternion(double cam[3], double origin[3]);
-
-#endif
+	point = malloc(sizeof(double) * 3);
+	point[0] = origin[0] + ray[0] * t;
+	point[1] = origin[1] + ray[1] * t;
+	point[2] = origin[2] + ray[2] * t;
+	return (point);
+}

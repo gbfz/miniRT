@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:29:19 by meldora           #+#    #+#             */
-/*   Updated: 2021/01/27 12:21:33 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/11 14:36:07 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 #include <stdio.h>
 
-float	**alloc_matrix(void);
-float	**matrix_from_quaternion(float q[4]);
-void	multiply_coords_by_matrix(float c[3], float **m);
-void	free_matrix(float **matrix);
+double	**alloc_matrix(void);
+double	**matrix_from_quaternion(double q[4]);
+void	multiply_by_matrix(double c[3], double **m);
+void	free_matrix(double **matrix);
 
 #endif

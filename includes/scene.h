@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 15:00:10 by meldora           #+#    #+#             */
-/*   Updated: 2021/01/31 11:54:45 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/12 17:05:03 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,44 @@ typedef struct	s_res
 
 typedef struct s_amb
 {
-	float		ratio;
-	float		*colors;
+	double		ratio;
+	double		*colors;
 }				t_amb;
 
 typedef	struct		s_cam
 {
 	int				id;
-	float			*coords;
-	float			*vector;
-	short			angle;
+	double			*coords;
+	double			*vector;
+	double			fov;
+	double			*ray;
+	double			**matrix;
 	struct s_cam	*next;
 }					t_cam;
 
 typedef struct	s_light
 {
-	float			*coords;
-	float			*colors;
-	float			intensity;
+	double			*coords;
+	double			*colors;
+	double			intensity;
 	struct s_light	*next;
 }					t_light;
 
 typedef struct		s_obj
 {
-	short			id;
+	int				id;
 	void			*obj;
 	struct s_obj	*next;
 }					t_obj;
 
-typedef struct	s_scene
+typedef struct	s_params
 {
-	t_res		res;
-	t_amb		*amb;
-	t_cam		*cam;
-	t_light		*light;
-	t_obj		*obj_lst;
-}				t_scene;
+	int			id;
+	int			distance;
+	double		*colors;
+	double		*point;
+	double		*normal;
+}				t_params;
 
 typedef struct	s_img
 {
@@ -66,5 +68,21 @@ typedef struct	s_img
 	int			ll;
 	int			en;
 }				t_img;
+
+typedef struct			s_img_lst
+{
+	t_img				img;
+	struct s_img_lst	*next;
+}						t_img_lst;
+
+typedef struct	s_scene
+{
+	t_res		res;
+	t_amb		*amb;
+	t_cam		*cam;
+	t_light		*light;
+	t_obj		*obj_lst;
+	double		(*intersect[5])(void *, double *, t_params *, double *);
+}				t_scene;
 
 #endif
