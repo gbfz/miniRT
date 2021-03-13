@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:26:27 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/02 16:29:28 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:41:02 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static double	*get_edge(double a[3], double b[3])
 	double *edge;
 
 	edge = malloc(sizeof(double) * 3);
+	if (edge == NULL)
+		exit_error("Malloc failed");
 	edge[0] = a[0] - b[0];
 	edge[1] = a[1] - b[1];
 	edge[2] = a[2] - b[2];
@@ -37,6 +39,8 @@ static double	*get_t_vec(double origin[3], double vertex[3])
 	double *tvec;
 
 	tvec = malloc(sizeof(double) * 3);
+	if (tvec == NULL)
+		exit_error("Malloc failed");
 	tvec[0] = origin[0] - vertex[0];
 	tvec[1] = origin[1] - vertex[1];
 	tvec[2] = origin[2] - vertex[2];

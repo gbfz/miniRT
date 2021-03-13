@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:40:51 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/10 12:59:01 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:40:04 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static double	*get_normal(double point[3], t_cylinder *cyl)
 	double *normal;
 
 	normal = malloc(sizeof(double) * 3);
+	if (normal == NULL)
+		exit_error("Malloc failed");
 	normal[0] = point[0] - cyl->bottom_cap[0] - cyl->vector[0] * cyl->m;
 	normal[1] = point[1] - cyl->bottom_cap[1] - cyl->vector[1] * cyl->m;
 	normal[2] = point[2] - cyl->bottom_cap[2] - cyl->vector[2] * cyl->m;

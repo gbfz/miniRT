@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:27:36 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/10 12:59:42 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:42:25 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ static double	min_pos(double a, double b)
 
 static double	*get_normal(double *point, t_sphere *sphere)
 {
-	double *n;
+	double *normal;
 
-	n = malloc(sizeof(double) * 3);
-	n[0] = point[0] - sphere->coords[0];
-	n[1] = point[1] - sphere->coords[1];
-	n[2] = point[2] - sphere->coords[2];
-	normalize(n);
-	return (n);
+	normal = malloc(sizeof(double) * 3);
+	if (normal == NULL)
+		exit_error("Malloc failed");
+	normal[0] = point[0] - sphere->coords[0];
+	normal[1] = point[1] - sphere->coords[1];
+	normal[2] = point[2] - sphere->coords[2];
+	normalize(normal);
+	return (normal);
 }
 
 static void		set_current_params(double point[3], t_sphere *sphere, t_params *current)

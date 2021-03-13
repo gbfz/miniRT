@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:20:14 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/12 17:23:13 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:39:39 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ static void		set_nearest_params(t_params *nearest, t_params current)
 	nearest->normal = current.normal;
 }
 
-static void		cast_ray(double **ray, t_res res, t_cam *cam, int pixel[2])
+static void		cast_ray(double **ray, t_res *res, t_cam *cam, int pixel[2])
 {
 	*ray = malloc(sizeof(double) * 3);
-	(*ray)[0] = pixel[X] - res.x / 2;
-	(*ray)[1] = res.y / 2 - pixel[Y];
-	(*ray)[2] = res.x / (2 * tan(cam->fov / 2));
+	if (*ray == NULL)
+		exit_error("Malloc failed");
+	(*ray)[0] = pixel[X] - res->x / 2;
+	(*ray)[1] = res->y / 2 - pixel[Y];
+	(*ray)[2] = res->x / (2 * tan(cam->fov / 2));
 	normalize(*ray);
 	multiply_by_matrix(*ray, cam->matrix);
 }
@@ -109,7 +111,7 @@ void			draw_scene(t_scene *scene, t_img *img, t_cam *cam)
 	int			color;
 
 	set_first_pixel(pixel);
-	while (switch_to_next_pixel(pixel, &scene->res) != 0)
+	while (switch_to_next_pixel(pixel, scene->res) != 0)
 	{
 		cast_ray(&cam->ray, scene->res, scene->cam, pixel);
 		if (get_nearest_intersection(scene, cam->ray, &params, cam) != NO_INTERSECTION)
@@ -183,11 +185,11 @@ int				main(int ac, char **av)
 	if (scene == NULL)
 		return (1);
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, scene->res.x, scene->res.y, "holy shit");
+	data.win = mlx_new_window(data.mlx, scene->res->x, scene->res->y, "holy shit");
 	data.img_lst = NULL;
 	while (scene->cam)
 	{
-		draw_image(&data, scene, &scene->res, scene->cam);
+		draw_image(&data, scene, scene->res, scene->cam);
 		free_cam(scene->cam);
 		scene->cam = scene->cam->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:03:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/10 12:59:30 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:41:19 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void		set_current_params(double ray[3], double t,
 	current->colors = plane->colors;
 	current->point = get_point(origin, ray, t);
 	current->normal = malloc(sizeof(double) * 3);
+	if (current->normal == NULL)
+		exit_error("Malloc failed");
 	ft_memcpy(current->normal, plane->vector, sizeof(double) * 3);
 }
 

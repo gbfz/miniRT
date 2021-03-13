@@ -6,26 +6,34 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:10:16 by meldora           #+#    #+#             */
-/*   Updated: 2021/01/31 16:35:58 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:32:18 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/matrix_operations.h"
 
-float	**alloc_matrix(void)
+double	**alloc_matrix(void)
 {
-	float **matrix;
+	double	**matrix;
+	int		i;
 
 	matrix = malloc(sizeof(*matrix) * 3);
-	matrix[0] = malloc(sizeof(float) * 3);
-	matrix[1] = malloc(sizeof(float) * 3);
-	matrix[2] = malloc(sizeof(float) * 3);
+	if (matrix == NULL)
+		exit_error("Malloc failed");
+	i = 0;
+	while (i < 3)
+	{
+		matrix[i] = malloc(sizeof(double) * 3);
+		if (matrix[i] == NULL)
+			exit_error("Malloc failed");
+		i++;
+	}
 	return (matrix);
 }
 
-float	**matrix_from_quaternion(float q[4])
+double	**matrix_from_quaternion(double q[4])
 {
-	float **matrix;
+	double **matrix;
 
 	matrix = alloc_matrix();
 	;
@@ -44,22 +52,22 @@ float	**matrix_from_quaternion(float q[4])
 	return (matrix);
 }
 
-void	multiply_coords_by_matrix(float c[3], float **m)
+void	multiply_by_matrix(double c[3], double **m)
 {
-	float x;
-	float y;
-	float z;
+	double x;
+	double y;
+	double z;
 
 	x = c[0];
 	y = c[1];
 	z = c[2];
 	;
-	c[0] = x * m[0][0] + y * m[0][1] + z * m[0][2];
-	c[1] = x * m[1][0] + y * m[1][1] + z * m[1][2];
-	c[2] = x * m[2][0] + y * m[2][1] + z * m[2][2];
+	c[0] = x * m[0][0] + y * m[1][0] + z * m[2][0];
+	c[1] = x * m[0][1] + y * m[1][1] + z * m[2][1];
+	c[2] = x * m[0][2] + y * m[1][2] + z * m[2][2];
 }
 
-void	free_matrix(float **matrix)
+void	free_matrix(double **matrix)
 {
 	free(matrix[0]);
 	free(matrix[1]);
