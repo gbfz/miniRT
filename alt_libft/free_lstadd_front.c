@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_lstnew.c                                     :+:      :+:    :+:   */
+/*   free_lstadd_front.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 12:26:32 by meldora           #+#    #+#             */
-/*   Updated: 2021/02/08 16:22:56 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/08 16:28:14 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/08 17:52:57 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alt_libft.h"
 
-t_light	*light_lstnew(void)
+void	free_lstadd_front(t_free **lst, t_free *new)
 {
-	t_light *elem;
-
-	elem = (t_light *)malloc(sizeof(t_light));
-	if (elem == NULL)
-		return (NULL);
-	elem->next = NULL;
-	return (elem);
+	if (new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

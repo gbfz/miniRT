@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_lstnew.c                                     :+:      :+:    :+:   */
+/*   img_lstnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 12:26:32 by meldora           #+#    #+#             */
-/*   Updated: 2021/02/08 16:22:56 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/10 17:53:33 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/10 17:55:37 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alt_libft.h"
 
-t_light	*light_lstnew(void)
+t_img_lst *img_lstnew(t_img img)
 {
-	t_light *elem;
+	t_img_lst *elem;
 
-	elem = (t_light *)malloc(sizeof(t_light));
+	elem = malloc(sizeof(t_img_lst));
 	if (elem == NULL)
 		return (NULL);
+	elem->img = img;
 	elem->next = NULL;
 	return (elem);
 }

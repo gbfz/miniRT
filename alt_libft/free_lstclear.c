@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_lstnew.c                                     :+:      :+:    :+:   */
+/*   free_lstclear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 12:26:32 by meldora           #+#    #+#             */
-/*   Updated: 2021/02/08 16:22:56 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/08 16:36:53 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/08 17:52:40 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alt_libft.h"
 
-t_light	*light_lstnew(void)
+void	free_lstclear(t_free **lst)
 {
-	t_light *elem;
-
-	elem = (t_light *)malloc(sizeof(t_light));
-	if (elem == NULL)
-		return (NULL);
-	elem->next = NULL;
-	return (elem);
+	if ((*lst)->next != NULL)
+		free_lstclear(&(*lst)->next);
+	free((*lst)->ptr);
+	(*lst)->ptr = NULL;
+	free(*lst);
+	*lst = NULL;
 }

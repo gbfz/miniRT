@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_lstnew.c                                     :+:      :+:    :+:   */
+/*   cam_lstsize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 12:26:32 by meldora           #+#    #+#             */
-/*   Updated: 2021/02/08 16:22:56 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/10 17:26:34 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/10 17:28:13 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alt_libft.h"
 
-t_light	*light_lstnew(void)
+size_t	cam_lstsize(t_cam *lst)
 {
-	t_light *elem;
+	size_t i;
 
-	elem = (t_light *)malloc(sizeof(t_light));
-	if (elem == NULL)
-		return (NULL);
-	elem->next = NULL;
-	return (elem);
+	if (lst == NULL)
+		return (0);
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }
