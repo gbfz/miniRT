@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:09:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:35:38 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 18:36:36 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int			ft_isnumber(char *str)
 {
 	int size;
 	char *save;
-	static int hui;
 
 	save = str;
 	if (*str == '-' || *str == '+')

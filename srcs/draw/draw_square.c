@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:12:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:19:42 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 18:37:42 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static double	get_orient(double p[3], double p1[3], double p2[3], double *n)
 	return (o);
 }
 
-static void		set_current_params(double t, double point[3],
+static void		set_current_params(double point[3],
 									t_square *sq, t_params *current)
 {
 	current->id = 2;
@@ -93,7 +93,7 @@ double			intersect_square(void *obj, double ray[3],
 	if (check_if_within_borders(point, sq) == 0)
 		return (0);
 	if (current != NULL)
-		set_current_params(t, point, sq, current);
+		set_current_params(point, sq, current);
 	else
 		free(point);
 	return (t);
