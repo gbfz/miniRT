@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   free_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 19:30:39 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:16:49 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/14 20:25:03 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/14 20:25:21 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int		key_hook(int key, t_data *data)
+void	free_cam(t_cam *cam)
 {
-	if (key == 53)
-		exit(0);
-	if (key == 49)
-	{
-		data->img_lst = data->img_lst->next;
-		if (data->img_lst == NULL)
-			data->img_lst = data->lst_start;
-	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img_lst->img.img, 0, 0);
-	return (0);
-}
-
-int		exit_hook(int button, int x, int y, t_data *data)
-{
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)data;
-	exit(0);
+	free(cam->coords);
+	free(cam->vector);
+	free_matrix(cam->matrix);
+	free(cam);
 }

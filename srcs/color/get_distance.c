@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   get_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 19:30:39 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:16:49 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/14 19:46:30 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/14 19:46:43 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int		key_hook(int key, t_data *data)
+double	get_distance(double a[3], double b[3])
 {
-	if (key == 53)
-		exit(0);
-	if (key == 49)
-	{
-		data->img_lst = data->img_lst->next;
-		if (data->img_lst == NULL)
-			data->img_lst = data->lst_start;
-	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img_lst->img.img, 0, 0);
-	return (0);
-}
+	double distance;
 
-int		exit_hook(int button, int x, int y, t_data *data)
-{
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)data;
-	exit(0);
+	distance = pow(b[0] - a[0], 2);
+	distance += pow(b[1] - a[1], 2);
+	distance += pow(b[2] - a[2], 2);
+	return (sqrt(distance));
 }

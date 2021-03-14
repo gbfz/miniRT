@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 19:28:12 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 19:30:32 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 20:18:51 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		draw_scene(t_scene *scene, t_img *img, t_cam *cam)
 	}
 }
 
-static void		draw_image(t_data *data, t_scene *scene, t_res *res, t_cam *cam)
+void			draw_image(t_data *data, t_scene *scene, t_res *res, t_cam *cam)
 {
 	data->img.img = mlx_new_image(data->mlx, res->x, res->y);
 	data->img.addr = mlx_get_data_addr(data->img.img,
