@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:41:09 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:32:00 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:23:56 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/vector_operations.h"
+#include "../../includes/vector_operations.h"
 
 double	get_length(double v[3])
 {

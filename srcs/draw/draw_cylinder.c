@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:40:51 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 13:21:38 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:19:16 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static double	*get_normal(double point[3], t_cylinder *cyl)
 {

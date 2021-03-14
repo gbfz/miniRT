@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:17:24 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:34:01 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:21:55 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
-#include "../alt_libft/alt_libft.h"
+#include "../../includes/minirt.h"
+#include "../../alt_libft/alt_libft.h"
 
 static int	check_triangle_line(char *line)
 {

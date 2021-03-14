@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:39:49 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:32:07 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:23:59 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/quaternion_operations.h"
+#include "../../includes/quaternion_operations.h"
 
 double	get_angle(double u[3], double v[3])
 {

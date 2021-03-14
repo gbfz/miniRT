@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:12:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:40:24 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:19:42 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static double	get_orient(double p[3], double p1[3], double p2[3], double *n)
 {

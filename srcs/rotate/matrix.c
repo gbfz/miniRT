@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:10:16 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:32:18 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:24:03 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/matrix_operations.h"
+#include "../../includes/matrix_operations.h"
 
 double	**alloc_matrix(void)
 {

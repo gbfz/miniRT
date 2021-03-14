@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:27:36 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 13:20:02 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:19:36 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static void		set_o_c(double o_c[3], t_sphere *sphere, double origin[3])
 {

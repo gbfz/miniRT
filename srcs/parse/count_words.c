@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:00:20 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 13:00:45 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:20:22 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../../includes/parser.h"
 
 size_t	doublelen(char *line)
 {

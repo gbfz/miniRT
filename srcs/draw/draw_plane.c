@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:03:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 14:02:03 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:19:28 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static void		set_current_params(double point[3], t_plane *plane,
 									t_params *current, double origin[3])

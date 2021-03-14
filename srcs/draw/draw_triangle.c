@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:26:27 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:41:02 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:19:47 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static double	*get_edge(double a[3], double b[3])
 {

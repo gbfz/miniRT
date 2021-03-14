@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:10:45 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:33:10 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:21:35 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
-#include "../alt_libft/alt_libft.h"
+#include "../../includes/minirt.h"
+#include "../../alt_libft/alt_libft.h"
 
 static int	check_sphere_line(char *line)
 {

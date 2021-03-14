@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:58:15 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:12:08 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:22:04 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
-#include "../alt_libft/alt_libft.h"
+#include "../../includes/minirt.h"
+#include "../../alt_libft/alt_libft.h"
 
 void	skip_spaces(char **line)
 {

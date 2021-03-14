@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:14:48 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:33:39 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/14 16:21:48 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
-#include "../alt_libft/alt_libft.h"
+#include "../../includes/minirt.h"
+#include "../../alt_libft/alt_libft.h"
 
 static int	check_square_line(char *line)
 {
