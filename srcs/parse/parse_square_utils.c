@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:13:33 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:21:42 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 14:07:55 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,28 @@ static void		get_planes(double vector[3], double **cross1, double **cross2)
 	normalize(*cross2);
 }
 
-double	**get_vertices(t_square *sq)
+double			**get_vertices(t_square *sq)
 {
 	double **vertices;
 	double *cross1;
 	double *cross2;
-	double half_side;
+	double hs;
 
 	vertices = alloc_vertices();
 	get_planes(sq->vector, &cross1, &cross2);
-	half_side = (double)sq->side / 2.0;
-	vertices[0][0] = (sq->coords[0] - half_side * cross1[0]) + (half_side * cross2[0]);
-	vertices[0][1] = (sq->coords[1] - half_side * cross1[1]) + (half_side * cross2[1]);
-	vertices[0][2] = (sq->coords[2] - half_side * cross1[2]) + (half_side * cross2[2]);
-	vertices[1][0] = (sq->coords[0] + half_side * cross1[0]) + (half_side * cross2[0]);
-	vertices[1][1] = (sq->coords[1] + half_side * cross1[1]) + (half_side * cross2[1]);
-	vertices[1][2] = (sq->coords[2] + half_side * cross1[2]) + (half_side * cross2[2]);
-	vertices[2][0] = (sq->coords[0] + half_side * cross1[0]) - (half_side * cross2[0]);
-	vertices[2][1] = (sq->coords[1] + half_side * cross1[1]) - (half_side * cross2[1]);
-	vertices[2][2] = (sq->coords[2] + half_side * cross1[2]) - (half_side * cross2[2]);
-	vertices[3][0] = (sq->coords[0] - half_side * cross1[0]) - (half_side * cross2[0]);
-	vertices[3][1] = (sq->coords[1] - half_side * cross1[1]) - (half_side * cross2[1]);
-	vertices[3][2] = (sq->coords[2] - half_side * cross1[2]) - (half_side * cross2[2]);
+	hs = sq->side / 2.0;
+	vertices[0][0] = (sq->coords[0] - hs * cross1[0]) + (hs * cross2[0]);
+	vertices[0][1] = (sq->coords[1] - hs * cross1[1]) + (hs * cross2[1]);
+	vertices[0][2] = (sq->coords[2] - hs * cross1[2]) + (hs * cross2[2]);
+	vertices[1][0] = (sq->coords[0] + hs * cross1[0]) + (hs * cross2[0]);
+	vertices[1][1] = (sq->coords[1] + hs * cross1[1]) + (hs * cross2[1]);
+	vertices[1][2] = (sq->coords[2] + hs * cross1[2]) + (hs * cross2[2]);
+	vertices[2][0] = (sq->coords[0] + hs * cross1[0]) - (hs * cross2[0]);
+	vertices[2][1] = (sq->coords[1] + hs * cross1[1]) - (hs * cross2[1]);
+	vertices[2][2] = (sq->coords[2] + hs * cross1[2]) - (hs * cross2[2]);
+	vertices[3][0] = (sq->coords[0] - hs * cross1[0]) - (hs * cross2[0]);
+	vertices[3][1] = (sq->coords[1] - hs * cross1[1]) - (hs * cross2[1]);
+	vertices[3][2] = (sq->coords[2] - hs * cross1[2]) - (hs * cross2[2]);
 	free(cross1);
 	free(cross2);
 	return (vertices);

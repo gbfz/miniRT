@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_amblient_light.c                             :+:      :+:    :+:   */
+/*   parse_ambient_lighting.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:09:15 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:20:48 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 13:40:05 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	check_amb_line(char *line)
 	return (0);
 }
 
-void	*parse_amb(char *line, t_scene *scene)
+void		*parse_amb(char *line, t_scene *scene)
 {
 	if (check_amb_line(line))
 		exit_error("Wrong values for ambient lighting");

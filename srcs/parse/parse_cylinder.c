@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:15:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:21:04 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 13:42:23 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,23 @@ static int	check_cylinder_line(char *line)
 	return (0);
 }
 
-void	*parse_cylinder(char *line, t_scene *scene)
+static void	*parse_cylinder_2(t_cylinder *cyl, char *line, t_scene *scene)
+{
+	skip_spaces(&line);
+	cyl->height = ft_atof(line);
+	if (cyl->height < 0)
+		exit_error("Wrong cylinder height");
+	line += doublelen(line);
+	skip_spaces(&line);
+	cyl->colors = parse_colors(&line);
+	if (cyl->colors == NULL)
+		exit_error("Wrong values for cylinder colors");
+	get_cylinder_cap(cyl);
+	object_lstadd_back(&scene->obj_lst, object_lstnew(cyl, 3));
+	return (cyl);
+}
+
+void		*parse_cylinder(char *line, t_scene *scene)
 {
 	t_cylinder	*cyl;
 
@@ -71,16 +87,5 @@ void	*parse_cylinder(char *line, t_scene *scene)
 	if (cyl->diameter < 0)
 		exit_error("Wrong cylinder diameter");
 	line += doublelen(line);
-	skip_spaces(&line);
-	cyl->height = ft_atof(line);
-	if (cyl->height < 0)
-		exit_error("Wrong cylinder height");
-	line += doublelen(line);
-	skip_spaces(&line);
-	cyl->colors = parse_colors(&line);
-	if (cyl->colors == NULL)
-		exit_error("Wrong values for cylinder colors");
-	get_cylinder_cap(cyl);
-	object_lstadd_back(&scene->obj_lst, object_lstnew(cyl, 3));
-	return (cyl);
+	return (parse_cylinder_2(cyl, line, scene));
 }

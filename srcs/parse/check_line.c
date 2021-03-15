@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:09:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 18:36:36 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 13:39:16 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	ft_isfloat(char *str)
 
 int			ft_isnumber(char *str)
 {
-	int size;
-	char *save;
+	int		size;
+	char	*save;
 
 	save = str;
 	if (*str == '-' || *str == '+')
@@ -52,7 +52,8 @@ int			ft_isnumber(char *str)
 static int	check_block(char **line)
 {
 	if (ft_isnumber(*line))
-		while (ft_isdigit(**line) || **line == '.' || **line == '-' || **line == '+')
+		while (ft_isdigit(**line) || **line == '.' ||
+							**line == '-' || **line == '+')
 			(*line)++;
 	else
 		return (1);

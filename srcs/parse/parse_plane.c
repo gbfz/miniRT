@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:11:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:21:21 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 13:43:19 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	check_plane_line(char *line)
 	return (0);
 }
 
-void	*parse_plane(char *line, t_scene *scene)
+void		*parse_plane(char *line, t_scene *scene)
 {
 	t_plane		*plane;
 

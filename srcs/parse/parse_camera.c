@@ -6,14 +6,14 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:02:05 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:20:56 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 13:40:44 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 #include "../../alt_libft/alt_libft.h"
 
-double	**get_matrix(t_cam *cam)
+double		**get_matrix(t_cam *cam)
 {
 	double	*quaternion;
 	double	**matrix;
@@ -52,7 +52,7 @@ static int	check_cam_line(char *line)
 	return (0);
 }
 
-void	*parse_cam(char *line, t_scene *scene)
+void		*parse_cam(char *line, t_scene *scene)
 {
 	t_cam		*camera;
 

@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:17:24 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:21:55 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 14:08:22 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	check_triangle_line(char *line)
 	return (0);
 }
 
-void	*parse_triangle(char *line, t_scene *scene)
+void		*parse_triangle(char *line, t_scene *scene)
 {
 	t_tri	*tri;
 

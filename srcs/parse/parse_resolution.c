@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:03:03 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:21:27 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 13:43:58 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	ft_atoi_for_mlx(char **s)
 	return (res * sign);
 }
 
-void	*parse_res(char *line, t_scene *scene)
+void		*parse_res(char *line, t_scene *scene)
 {
 	if (check_res_line(line))
 		exit_error("Wrong values for resolution");
@@ -70,14 +70,12 @@ void	*parse_res(char *line, t_scene *scene)
 		exit_error("Malloc failed");
 	skip_spaces(&line);
 	scene->res->x = ft_atoi_for_mlx(&line);
-	//scene->res->x = ft_atoi(line);
 	if (scene->res->x < 0)
 		exit_error("Wrong image width");
 	while (ft_isdigit(*line))
 		line++;
 	skip_spaces(&line);
 	scene->res->y = ft_atoi_for_mlx(&line);
-	//scene->res->y = ft_atoi(line);
 	if (scene->res->y < 0)
 		exit_error("Wrong image height");
 	return (scene);

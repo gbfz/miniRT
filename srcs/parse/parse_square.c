@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:14:48 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:21:48 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 13:55:32 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_square_line(char *line)
 	return (0);
 }
 
-void	*parse_square(char *line, t_scene *scene)
+void		*parse_square(char *line, t_scene *scene)
 {
 	t_square	*square;
 

@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 15:03:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:30:15 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 14:20:25 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int		parse_params(char *id, char *line, t_scene *scene)
 	static int		amb_present;
 	
 	ret = NULL;
-	if (ft_strcmp(id, "R") == 0 && res_present++ == 0)
+	if (ft_strcmp(id, "R\0") == 0 && res_present++ == 0)
 		ret = parse_res(line, scene);
-	else if (ft_strcmp(id, "A") == 0 && amb_present++ == 0)
+	else if (ft_strcmp(id, "A\0") == 0 && amb_present++ == 0)
 		ret = parse_amb(line, scene);
-	else if (ft_strcmp(id, "c") == 0)
+	else if (ft_strcmp(id, "c\0") == 0)
 		ret = parse_cam(line, scene);
-	else if (ft_strcmp(id, "l") == 0)
+	else if (ft_strcmp(id, "l\0") == 0)
 		ret = parse_light(line, scene);
 	free(id);
 	if (ret == NULL)
@@ -53,15 +53,15 @@ int		parse_objects(char *id, char *line, t_scene *scene)
 	void	*ret;
 
 	ret = NULL;
-	if (ft_strcmp(id, "sp") == 0)
+	if (ft_strcmp(id, "sp\0") == 0)
 		ret = parse_sphere(line, scene);
-	else if (ft_strcmp(id, "pl") == 0)
+	else if (ft_strcmp(id, "pl\0") == 0)
 		ret = parse_plane(line, scene);
-	else if (ft_strcmp(id, "sq") == 0)
+	else if (ft_strcmp(id, "sq\0") == 0)
 		ret = parse_square(line, scene);
-	else if (ft_strcmp(id, "cy") == 0)
+	else if (ft_strcmp(id, "cy\0") == 0)
 		ret = parse_cylinder(line, scene);
-	else if (ft_strcmp(id, "tr") == 0)
+	else if (ft_strcmp(id, "tr\0") == 0)
 		ret = parse_triangle(line, scene);
 	free(id);
 	if (ret == NULL)
@@ -78,27 +78,17 @@ int		parse_line(char *line, t_scene *scene)
 	if (id == NULL)
 		return (-1);
 	line += ft_strlen(id);
-	if (ft_strcmp(id, "R") == 0 || ft_strcmp(id, "A") == 0 || \
-			ft_strcmp(id, "c") == 0 || ft_strcmp(id, "l") == 0)
+	if (ft_strcmp(id, "R\0") == 0 || ft_strcmp(id, "A\0") == 0 || \
+			ft_strcmp(id, "c\0") == 0 || ft_strcmp(id, "l\0") == 0)
 		return (parse_params(id, line, scene));
-	if (ft_strcmp(id, "pl") == 0 || ft_strcmp(id, "sp") == 0 || \
-			ft_strcmp(id, "sq") == 0 || ft_strcmp(id, "cy") == 0 || \
-			ft_strcmp(id, "tr") == 0)
+	else if (ft_strcmp(id, "pl\0") == 0 || ft_strcmp(id, "sp\0") == 0 || \
+			ft_strcmp(id, "sq\0") == 0 || ft_strcmp(id, "cy\0") == 0 || \
+			ft_strcmp(id, "tr\0") == 0)
 		return (parse_objects(id, line, scene));
+	else
+		exit_error("Wrong parameter supplied");
 	return (-1);
 }
-
-/*
-void		check_file(int ac, char *filename)
-{
-	if (ac < 2) // wrong
-		exit_error("No file provided");
-	if (ft_strcmp(filename + ft_strlen(filename) - 3, ".rt") != 0)
-		exit_error("Wrong file format");
-	if (ac == 3)
-		if (ft_strcmp())
-}
-*/
 
 void		check_file(int ac, char **av)
 {
@@ -106,10 +96,10 @@ void		check_file(int ac, char **av)
 		exit_error("Too many arguments supplied");
 	if (ac < 2)
 		exit_error("No file provided");
-	if (ft_strcmp(av[1] + ft_strlen(av[1]) - 3, ".rt") != 0)
+	if (ft_strcmp(av[1] + ft_strlen(av[1]) - 3, ".rt\0") != 0)
 		exit_error("Wrong file format");
 	if (ac == 3)
-		if (ft_strcmp(av[2], "--save") != 0)
+		if (ft_strcmp(av[2], "--save\0") != 0)
 			exit_error("Wrong second argument (\"--save\" only)");
 }
 
