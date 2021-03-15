@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: meldora <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 14:36:14 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:34:54 by meldora          ###   ########.fr       */
+/*   Created: 2020/11/05 16:21:09 by meldora           #+#    #+#             */
+/*   Updated: 2020/11/06 16:27:42 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "libft.h"
 
-void	exit_error(char *message);
+void	ft_putstr_fd(char *s, int fd)
+{
+	size_t i;
 
-#endif
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
+}

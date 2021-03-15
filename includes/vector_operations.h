@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 18:08:29 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/02 16:31:20 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:37:44 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include <stdlib.h>
+# include "errors.h"
 
 double	get_length(double v[3]);
 void	normalize(double v[3]);

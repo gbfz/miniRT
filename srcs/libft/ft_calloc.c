@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: meldora <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 14:36:14 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:34:54 by meldora          ###   ########.fr       */
+/*   Created: 2020/11/03 22:07:46 by meldora           #+#    #+#             */
+/*   Updated: 2020/12/20 13:17:13 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "libft.h"
 
-void	exit_error(char *message);
+void	*ft_calloc(size_t count, size_t size)
+{
+	void *res;
 
-#endif
+	res = malloc(count * size);
+	if (res == NULL)
+		return (NULL);
+	ft_bzero(res, count * size);
+	return (res);
+}

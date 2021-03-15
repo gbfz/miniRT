@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: meldora <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 14:36:14 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:34:54 by meldora          ###   ########.fr       */
+/*   Created: 2020/11/02 09:10:06 by meldora           #+#    #+#             */
+/*   Updated: 2020/11/06 15:28:53 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "libft.h"
 
-void	exit_error(char *message);
-
-#endif
+int	ft_isalnum(int ch)
+{
+	if (ft_isdigit(ch))
+		return (1);
+	if (ft_isalpha(ch))
+		return (1);
+	return (0);
+}

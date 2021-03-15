@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: meldora <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 14:36:14 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:34:54 by meldora          ###   ########.fr       */
+/*   Created: 2020/11/05 17:17:53 by meldora           #+#    #+#             */
+/*   Updated: 2020/11/05 18:13:25 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "libft.h"
 
-void	exit_error(char *message);
+t_list	*ft_lstnew(void *content)
+{
+	t_list *elem;
 
-#endif
+	elem = (t_list *)malloc(sizeof(t_list));
+	if (!elem)
+		return (NULL);
+	elem->content = content;
+	elem->next = NULL;
+	return (elem);
+}

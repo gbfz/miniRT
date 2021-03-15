@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:28:45 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/02 16:30:28 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:37:33 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "vector_operations.h"
+# include "errors.h"
 
 #include <stdio.h>
 

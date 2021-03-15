@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:58:15 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:22:04 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 18:55:57 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,23 @@ double	*parse_coords(char **line)
 	return (coords);
 }
 
+static int	check_vector_length(double vector[3])
+{
+	double len;
+
+	len = get_length(vector);
+	if (len < 0.9999 || len > 1.0001)
+	{
+		free(vector);
+		return (1);
+	}
+	return (0);
+}
+
 double	*parse_vector(char **line)
 {
 	double	*vector;
 	short	i;
-	double	len;
 
 	vector = malloc(sizeof(double) * 3);
 	i = 0;
@@ -62,12 +74,8 @@ double	*parse_vector(char **line)
 		skip_spaces(line);
 		i++;
 	}
-	len = get_length(vector);
-	if (len < 0.9999 || len > 1.0001)
-	{
-		free(vector);
+	if (check_vector_length(vector))
 		return (NULL);
-	}
 	return (vector);
 }
 

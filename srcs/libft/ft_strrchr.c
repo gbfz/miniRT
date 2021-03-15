@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: meldora <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 14:36:14 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:34:54 by meldora          ###   ########.fr       */
+/*   Created: 2020/10/28 20:19:36 by meldora           #+#    #+#             */
+/*   Updated: 2020/11/09 12:06:23 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "libft.h"
 
-void	exit_error(char *message);
+char	*ft_strrchr(const char *s, int c)
+{
+	char	*ptr;
+	char	*hold;
 
-#endif
+	hold = NULL;
+	ptr = (char *)s;
+	if (*ptr == (char)c)
+		hold = ptr;
+	while (*ptr)
+	{
+		ptr++;
+		if (*ptr == (char)c)
+			hold = ptr;
+	}
+	return (hold);
+}

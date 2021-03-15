@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_operations.h                                :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 11:29:19 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/13 14:37:23 by meldora          ###   ########.fr       */
+/*   Created: 2021/01/26 14:01:58 by meldora           #+#    #+#             */
+/*   Updated: 2021/01/26 14:04:40 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRIX_OPERATIONS_H
-# define MATRIX_OPERATIONS_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include "errors.h"
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int i;
 
-double	**alloc_matrix(void);
-double	**matrix_from_quaternion(double q[4]);
-void	multiply_by_matrix(double c[3], double **m);
-void	free_matrix(double **matrix);
-
-#endif
+	i = 0;
+	while (s1[i] == s2[i] && s1[i])
+		i++;
+	if (s1[i] != s2[i])
+		return (s1[i] - s2[i]);
+	return (0);
+}

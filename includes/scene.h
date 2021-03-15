@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 15:00:10 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/12 17:05:03 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/12 22:13:25 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct			s_img_lst
 
 typedef struct	s_scene
 {
-	t_res		res;
+	t_res		*res;
 	t_amb		*amb;
 	t_cam		*cam;
 	t_light		*light;
