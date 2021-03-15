@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:31:52 by meldora           #+#    #+#             */
-/*   Updated: 2021/02/02 12:59:57 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 20:43:49 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ static int	read_rem(char **line, char **rem)
 		*rem = NULL;
 	return (1);
 }
-
-#include <stdio.h>
 
 int			get_next_line(int fd, char **line)
 {

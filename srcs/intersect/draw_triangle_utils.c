@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   draw_triangle_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 19:30:39 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:42:52 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/15 20:44:53 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/15 21:15:23 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int		key_hook(int key, t_data *data)
+void	set_triangle_params(double point[3], double normal[3],
+									t_tri *tri, t_params *current)
 {
-	if (key == 53)
-		exit(0);
-	if (key == 49)
-	{
-		data->img_lst = data->img_lst->next;
-		if (data->img_lst == NULL)
-			data->img_lst = data->lst_start;
-	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img_lst->img.img, 0, 0);
+	current->id = 4;
+	current->colors = tri->colors;
+	current->point = point;
+	current->normal = normal;
+}
+
+void	set_vectors_to_null(double *vec[3])
+{
+	vec[PVEC] = NULL;
+	vec[TVEC] = NULL;
+	vec[QVEC] = NULL;
+}
+
+double	free_vectors(double *vec[3])
+{
+	free(vec[0]);
+	free(vec[1]);
+	free(vec[2]);
 	return (0);
 }
 
-int		exit_hook(int button, int x, int y, t_data *data)
+void	free_edges(double *edge[2])
 {
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)data;
-	exit(0);
+	free(edge[0]);
+	free(edge[1]);
 }

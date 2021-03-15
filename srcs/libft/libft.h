@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:11:28 by meldora           #+#    #+#             */
-/*   Updated: 2021/01/26 14:16:41 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 20:57:32 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_list					*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
 int						ft_strcmp(const char *s1, const char *s2);
-float					ft_atof(char *s);
+double					ft_atof(char *s);
 int						ft_isspace(char c);
 
 #endif

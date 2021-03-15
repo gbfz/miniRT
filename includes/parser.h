@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:59:22 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 12:59:19 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 20:23:54 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void		*parse_res(char *line, t_scene *scene);
 void		*parse_amb(char *line, t_scene *scene);
 void		*parse_cam(char *line, t_scene *scene);
 void		*parse_light(char *line, t_scene *scene);
-int			parse_params(char *id, char *line, t_scene *scene);
 
 t_sphere	*new_sphere(void);
 void		*parse_sphere(char *line, t_scene *scene);
@@ -41,13 +40,7 @@ void		*parse_cylinder(char *line, t_scene *scene);
 void		get_cylinder_caps(t_cylinder *cyl);
 
 void		*parse_triangle(char *line, t_scene *scene);
-int			parse_objects(char *id, char *line, t_scene *scene);
-
-int			parse_line(char *line, t_scene *scene);
 
 t_scene		*parser(int config);
 
-//void		check_file(int ac, char *filename);
 void		check_file(int ac, char **av);
-
-t_scene		*new_scene(void);

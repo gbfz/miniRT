@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:40:51 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:19:16 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 20:55:27 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,9 @@ static void		set_o_c(t_cylinder *cyl, double o_c[3], double origin[3])
 static void		set_current_params(double point[3], t_cylinder *cyl,
 									t_params *current)
 {
-	current->id = 3;
 	current->colors = cyl->colors;
 	current->point = point;
 	current->normal = get_normal(point, cyl);
-}
-
-static void		set_equation(double eq[3], double o_c[3],
-							double ray[3], t_cylinder *cyl)
-{
-	eq[0] = 1 - pow(dot(ray, cyl->vector), 2);
-	eq[1] = (dot(ray, o_c) - dot(ray, cyl->vector) * dot(o_c, cyl->vector)) * 2;
-	eq[2] = dot(o_c, o_c) - pow(dot(o_c, cyl->vector), 2)
-			- pow(cyl->diameter / 2, 2);
 }
 
 static int		check_if_within_borders(double t, t_cylinder *cyl,

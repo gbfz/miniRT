@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:26:27 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:19:47 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 21:13:50 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ static double	*get_edge(double a[3], double b[3])
 	return (edge);
 }
 
-static void		set_current_params(double point[3], double normal[3],
-									t_tri *tri, t_params *current)
-{
-	current->id = 4;
-	current->colors = tri->colors;
-	current->point = point;
-	current->normal = normal;
-}
-
 static double	*get_t_vec(double origin[3], double vertex[3])
 {
 	double *tvec;
@@ -45,21 +36,6 @@ static double	*get_t_vec(double origin[3], double vertex[3])
 	tvec[1] = origin[1] - vertex[1];
 	tvec[2] = origin[2] - vertex[2];
 	return (tvec);
-}
-
-static void		set_vectors_to_null(double *vec[3])
-{
-	vec[PVEC] = NULL;
-	vec[TVEC] = NULL;
-	vec[QVEC] = NULL;
-}
-
-static double	free_vectors(double *vec[3])
-{
-	free(vec[0]);
-	free(vec[1]);
-	free(vec[2]);
-	return (0);
 }
 
 static double	check_barycentric_coords(double origin[3], double vertex[3],
@@ -100,12 +76,6 @@ static double	*get_normal(double *edge[2])
 	return (normal);
 }
 
-static void		free_edges(double *edge[2])
-{
-	free(edge[0]);
-	free(edge[1]);
-}
-
 double			intersect_triangle(void *obj, double ray[3],
 									t_params *current, double origin[3])
 {
@@ -123,7 +93,7 @@ double			intersect_triangle(void *obj, double ray[3],
 		return (0);
 	}
 	if (current != NULL)
-		set_current_params(get_point(origin, ray, t),
+		set_triangle_params(get_point(origin, ray, t),
 							get_normal(edge), tri, current);
 	free_edges(edge);
 	return (t);

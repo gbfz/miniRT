@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_lstnew.c                                    :+:      :+:    :+:   */
+/*   draw_square_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 12:23:30 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 21:01:07 by meldora          ###   ########.fr       */
+/*   Created: 2021/03/15 20:52:30 by meldora           #+#    #+#             */
+/*   Updated: 2021/03/15 20:52:54 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "alt_libft.h"
+#include "../../includes/minirt.h"
 
-t_obj	*object_lstnew(void *object, int id)
+double	get_orient(double p[3], double p1[3], double p2[3], double n[3])
 {
-	t_obj *elem;
+	double o;
+	double *c;
+	double v1[3];
+	double v2[3];
 
-	elem = malloc(sizeof(t_obj));
-	if (elem == NULL)
-		return (NULL);
-	elem->obj = object;
-	elem->id = id;
-	elem->next = NULL;
-	return (elem);
+	v1[0] = p1[0] - p[0];
+	v1[1] = p1[1] - p[1];
+	v1[2] = p1[2] - p[2];
+	;
+	v2[0] = p2[0] - p[0];
+	v2[1] = p2[1] - p[1];
+	v2[2] = p2[2] - p[2];
+	;
+	c = cross(v1, v2);
+	o = dot(c, n);
+	free(c);
+	return (o);
 }

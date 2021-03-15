@@ -6,38 +6,15 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:12:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 18:37:42 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 20:53:01 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static double	get_orient(double p[3], double p1[3], double p2[3], double *n)
-{
-	double o;
-	double *c;
-	double v1[3];
-	double v2[3];
-
-	v1[0] = p1[0] - p[0];
-	v1[1] = p1[1] - p[1];
-	v1[2] = p1[2] - p[2];
-	;
-	v2[0] = p2[0] - p[0];
-	v2[1] = p2[1] - p[1];
-	v2[2] = p2[2] - p[2];
-	;
-	c = cross(v1, v2);
-	o = dot(c, n);
-	free(c);
-	return (o);
-}
-
 static void		set_current_params(double point[3],
 									t_square *sq, t_params *current)
 {
-	current->id = 2;
-	current->colors = sq->colors;
 	current->point = point;
 	current->normal = malloc(sizeof(double) * 3);
 	if (current->normal == NULL)

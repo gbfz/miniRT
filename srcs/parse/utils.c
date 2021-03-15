@@ -6,20 +6,20 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:58:15 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 18:55:57 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 20:16:41 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 #include "../../alt_libft/alt_libft.h"
 
-void	skip_spaces(char **line)
+void		skip_spaces(char **line)
 {
 	while (ft_isspace(**line) && **line)
 		(*line)++;
 }
 
-double	*parse_coords(char **line)
+double		*parse_coords(char **line)
 {
 	double	*coords;
 	short	i;
@@ -52,7 +52,7 @@ static int	check_vector_length(double vector[3])
 	return (0);
 }
 
-double	*parse_vector(char **line)
+double		*parse_vector(char **line)
 {
 	double	*vector;
 	short	i;
@@ -79,7 +79,7 @@ double	*parse_vector(char **line)
 	return (vector);
 }
 
-double	*parse_colors(char **line)
+double		*parse_colors(char **line)
 {
 	double	*colors;
 	short	i;

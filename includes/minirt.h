@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:54:07 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 18:17:05 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 21:16:43 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,16 @@ void		null_params(t_params *n, t_params *c);
 void		free_current_params(t_params *current);
 void		set_nearest_params(t_params *nearest, t_params current);
 
+void		set_equation(double eq[3], double o_c[3], double ray[3], t_cylinder *cyl);
 double		intersect_cylinder(void *obj, double ray[3], t_params *current, double origin[3]);
 double		intersect_sphere(void *obj, double ray[3], t_params *current, double origin[3]);
 double		intersect_plane(void *obj, double ray[3], t_params *current, double origin[3]);
+double		get_orient(double p[3], double p1[3], double p2[3], double n[3]);
 double		intersect_square(void *obj, double ray[3], t_params *current, double origin[3]);
+void		set_triangle_params(double point[3], double normal[3], t_tri *tri, t_params *current);
+void		set_vectors_to_null(double *vec[3]);
+double		free_vectors(double *vec[3]);
+void		free_edges(double *edge[2]);
 double		intersect_triangle(void *obj, double ray[3], t_params *current, double origin[3]);
 
 t_img_lst	*img_lstnew(t_img img);
@@ -73,7 +79,7 @@ double		get_distance(double a[3], double b[3]);
 int			light_has_obstacles(t_params *obj, t_light *light, double cam_ray[3], t_scene *scene);
 double		get_intensity(t_light *light, t_params *obj, t_cam *cam, t_scene *scene);
 int			get_color(t_params *obj, t_scene *scene, t_cam *cam);
-void		render_screenshot(t_img *img, t_res *res);
+void		render_screenshot(t_data *data, t_scene *scene);
 
 int			key_hook(int key, t_data *data);
 int			exit_hook(int button, int x, int y, t_data *data);

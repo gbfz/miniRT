@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 19:34:06 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 20:26:02 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/15 21:10:09 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ int				main(int ac, char **av)
 		exit_error("Failed to open .rt file");
 	scene = parser(config);
 	init_data(&data, scene);
+	if (ac == 3)
+	{
+		render_screenshot(&data, scene);
+		return (0);
+	}
 	render(&data, scene);
 	display(&data);
 	return (0);
