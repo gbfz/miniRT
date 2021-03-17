@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 17:53:11 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/17 12:06:32 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 12:18:47 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #include <stdio.h>
 
-static void		set_file_header(t_img *img, t_res *res, int padding_size, int fd)
+static void		set_file_header(t_img *img, t_res *res,
+								int padding_size, int fd)
 {
 	unsigned char	header[14];
 	int				file_size;
 
 	ft_bzero(header, 14);
-	//file_size = 54 + (img->bpp / 8 * res->x + padding_size) * res->y;
 	(void)padding_size;
 	file_size = 54 + (img->bpp / 8 * res->x) * res->y;
 	header[0] = 'B';
@@ -58,7 +58,7 @@ static void		write_bmp(t_img *img, t_res *res, int fd)
 {
 	int h;
 	int w;
-	
+
 	h = res->y;
 	while (h--)
 	{
