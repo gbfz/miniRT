@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:09:15 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 21:17:43 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/16 12:53:15 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ void		*parse_amb(char *line, t_scene *scene)
 	scene->amb = malloc(sizeof(t_amb));
 	skip_spaces(&line);
 	scene->amb->ratio = ft_atof(line);
-	printf("r = %f\n", scene->amb->ratio);
 	if (scene->amb->ratio < 0 || scene->amb->ratio > 1)
-		exit_error("Wrong values for ambient lighting intensity");
+		exit_error("Wrong value for ambient lighting intensity");
 	line += doublelen(line);
 	skip_spaces(&line);
 	scene->amb->colors = parse_colors(&line);

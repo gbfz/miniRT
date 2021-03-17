@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 19:28:12 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:43:12 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/16 15:35:57 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void		draw_scene(t_scene *scene, t_img *img, t_cam *cam)
 	set_first_pixel(pixel);
 	while (switch_to_next_pixel(pixel, scene->res) != 0)
 	{
-		cast_ray(&cam->ray, scene->res, scene->cam, pixel);
+		cast_ray(&cam->ray, scene->res, cam, pixel);
 		if (get_nearest_intersection(scene, cam->ray, &params, cam)
 			!= NO_INTERSECTION)
 		{

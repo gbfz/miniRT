@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 15:03:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 21:02:16 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/16 12:54:41 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_scene			*parser(int config)
 		exit_error("Ambient lighting missing");
 	if (scene->cam == NULL)
 		exit_error("Not really an error, \
-		but there are no cameras in the file and I can't show anything");
+but there are no cameras in the file and I can't show anything");
 	free(line);
 	return (scene);
 }

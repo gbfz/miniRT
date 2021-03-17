@@ -6,11 +6,14 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:59:22 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:23:54 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/16 13:04:05 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef PARSER_H
+# define PARSER_H
+
+# include "minirt.h"
 
 void		skip_spaces(char **line);
 int			count_words(char *line);
@@ -44,3 +47,5 @@ void		*parse_triangle(char *line, t_scene *scene);
 t_scene		*parser(int config);
 
 void		check_file(int ac, char **av);
+
+#endif

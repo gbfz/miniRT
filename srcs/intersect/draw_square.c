@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:12:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:53:01 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/16 14:06:14 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void		set_current_params(double point[3],
 									t_square *sq, t_params *current)
 {
+	current->colors = sq->colors;
 	current->point = point;
 	current->normal = malloc(sizeof(double) * 3);
 	if (current->normal == NULL)
