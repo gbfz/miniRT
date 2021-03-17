@@ -6,15 +6,15 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:00:46 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 17:03:00 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:33:53 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALT_LIBFT_H
 # define ALT_LIBFT_H
 
-# include "../../includes/minirt.h"
 # include "../../includes/objects.h"
+# include "../../includes/minirt.h"
 # include <stdlib.h>
 
 void		object_lstadd_back(t_obj **lst, t_obj *new);

@@ -6,11 +6,11 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:14:58 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:26:18 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:32:35 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
+#include "../libft/libft.h"
 
 void	exit_error(char *message)
 {

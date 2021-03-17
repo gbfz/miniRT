@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:09:15 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/16 12:53:15 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:36:33 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-#include "../../alt_libft/alt_libft.h"
+#include "../list_management/alt_libft.h"
 
 static int	check_amb_line(char *line)
 {

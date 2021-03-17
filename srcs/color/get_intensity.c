@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 19:41:35 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/16 13:56:35 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:30:03 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ double			get_intensity(t_light *light, t_params *obj,
 	double	intensity;
 	double	light_ray[3];
 	double	normal_dot_light;
-	double	distance;
-	double	falloff;
 
 	if (light_has_obstacles(obj, light, cam->ray, scene) == 1)
 		return (0);
@@ -56,8 +54,6 @@ double			get_intensity(t_light *light, t_params *obj,
 	normal_dot_light = get_n_dot_l(obj, light_ray, cam->ray);
 	if (normal_dot_light <= 0)
 		return (0);
-	distance = get_distance(obj->point, light->coords);
-	falloff = 1;//FOG / pow(distance, 2);
-	intensity = light->intensity * falloff * normal_dot_light;
+	intensity = light->intensity * normal_dot_light;
 	return (intensity);
 }

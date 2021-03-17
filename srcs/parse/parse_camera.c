@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:02:05 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 13:40:44 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:36:29 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-#include "../../alt_libft/alt_libft.h"
+#include "../list_management/alt_libft.h"
 
 double		**get_matrix(t_cam *cam)
 {

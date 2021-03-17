@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 20:20:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:22:13 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:34:53 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-#include "../../alt_libft/alt_libft.h"
+#include "../list_management/alt_libft.h"
 
 char	*get_id(char *line)
 {

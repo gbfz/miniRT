@@ -6,7 +6,7 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:54:07 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/16 13:01:10 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:34:14 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <math.h>
 # include <unistd.h>
 
-# include "../minilibx_mms_20200219/mlx.h"
+# include "../srcs/minilibx_mms_20200219/mlx.h"
 # include "objects.h"
 # include "scene.h"
 # include "vector_operations.h"
@@ -26,7 +26,7 @@
 # include "matrix_operations.h"
 # include "errors.h"
 
-# include "../get_next_line/get_next_line.h"
+# include "../srcs/get_next_line/get_next_line.h"
 # include "../srcs/libft/libft.h"
 
 # define X 0

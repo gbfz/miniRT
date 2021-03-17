@@ -6,12 +6,12 @@
 /*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:13:33 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 14:07:55 by meldora          ###   ########.fr       */
+/*   Updated: 2021/03/17 18:35:30 by meldora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-#include "../../alt_libft/alt_libft.h"
+#include "../list_management/alt_libft.h"
 
 static void		set_inverted_vector(double inverted_vector[3], double vector[3])
 {
