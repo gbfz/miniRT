@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_plane.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/14 19:03:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 18:37:19 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 static void		set_current_params(double point[3], t_plane *plane,
-									t_params *current)
+					   t_params *current)
 {
 	current->colors = plane->colors;
 	current->point = point;
@@ -31,7 +19,7 @@ static void		set_c_o(double c_o[3], double coords[3], double origin[3])
 }
 
 double			intersect_plane(void *obj, double ray[3],
-								t_params *current, double origin[3])
+					t_params *current, double origin[3])
 {
 	t_plane		*plane;
 	double		denom;

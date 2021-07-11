@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_triangle.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/14 19:26:27 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 21:13:50 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 static double	*get_edge(double a[3], double b[3])
@@ -39,7 +27,7 @@ static double	*get_t_vec(double origin[3], double vertex[3])
 }
 
 static double	check_barycentric_coords(double origin[3], double vertex[3],
-											double ray[3], double *edge[2])
+					 double ray[3], double *edge[2])
 {
 	double	det;
 	double	*v[3];
@@ -77,7 +65,7 @@ static double	*get_normal(double *edge[2])
 }
 
 double			intersect_triangle(void *obj, double ray[3],
-									t_params *current, double origin[3])
+					   t_params *current, double origin[3])
 {
 	t_tri	*tri;
 	double	*edge[2];
@@ -94,7 +82,7 @@ double			intersect_triangle(void *obj, double ray[3],
 	}
 	if (current != NULL)
 		set_triangle_params(get_point(origin, ray, t),
-							get_normal(edge), tri, current);
+				    get_normal(edge), tri, current);
 	free_edges(edge);
 	return (t);
 }

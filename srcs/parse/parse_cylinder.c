@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_cylinder.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 13:15:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/17 18:36:21 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
-#include "../list_management/alt_libft.h"
+#include "../list_management/list_management.h"
 
 static void	get_cylinder_cap(t_cylinder *cyl)
 {

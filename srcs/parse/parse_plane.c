@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_plane.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 13:11:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/17 18:36:03 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
-#include "../list_management/alt_libft.h"
+#include "../list_management/list_management.h"
 
 static int	check_plane_line(char *line)
 {

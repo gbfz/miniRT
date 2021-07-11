@@ -1,26 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 14:59:22 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/16 13:04:05 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PARSER_H
 # define PARSER_H
 
 # include "minirt.h"
 
 void		skip_spaces(char **line);
-int			count_words(char *line);
+int		count_words(char *line);
 size_t		intlen(int n);
 size_t		doublelen(char *line);
-int			ft_isnumber(char *str);
-int			check_group(char **line);
+int		ft_isnumber(char *str);
+int		check_group(char **line);
 char		*get_id(char *line);
 
 double		*parse_coords(char **line);

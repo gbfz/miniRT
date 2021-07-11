@@ -1,31 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/14 13:31:52 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:43:49 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-char		*ft_strappend(char *s, char c)
+char	*ft_strappend(char *s, char c)
 {
 	char	*res;
-	int		i;
+	int	i;
 
 	res = (char *)malloc(sizeof(char) * (ft_strlen(s) + 2));
 	if (res == NULL)
 		return (NULL);
 	i = 0;
-	while (s[i])
-	{
-		res[i] = s[i];
+	while ((res[i] = s[i]))
 		i++;
-	}
 	res[i] = c;
 	res[++i] = '\0';
 	free(s);
@@ -66,8 +51,8 @@ int			get_next_line(int fd, char **line)
 {
 	static char		*buf[256];
 	static char		*rem[256];
-	int				was_read;
-	int				was_written;
+	int			was_read;
+	int			was_written;
 
 	if (fd < 0 || fd > 256)
 		return (-1);

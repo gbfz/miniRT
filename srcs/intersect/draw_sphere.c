@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_sphere.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/14 16:27:36 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/14 16:19:36 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 static void		set_o_c(double o_c[3], t_sphere *sphere, double origin[3])
@@ -45,7 +33,7 @@ static double	*get_normal(double *point, t_sphere *sphere)
 }
 
 static void		set_current_params(double point[3], t_sphere *sphere,
-									t_params *current)
+					   t_params *current)
 {
 	current->id = 0;
 	current->colors = sphere->colors;
@@ -54,7 +42,7 @@ static void		set_current_params(double point[3], t_sphere *sphere,
 }
 
 double			intersect_sphere(void *obj, double ray[3],
-								t_params *current, double origin[3])
+					 t_params *current, double origin[3])
 {
 	t_sphere	*sphere;
 	double		eq[2];

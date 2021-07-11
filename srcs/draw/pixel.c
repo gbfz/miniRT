@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pixel.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 19:21:58 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:43:07 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 void	pixel_put(t_img *img, int pixel[2], int color)
@@ -20,7 +8,7 @@ void	pixel_put(t_img *img, int pixel[2], int color)
 	*(unsigned int *)dst = color;
 }
 
-int		switch_to_next_pixel(int pixel[2], t_res *res)
+int	switch_to_next_pixel(int pixel[2], t_res *res)
 {
 	pixel[X] += 1;
 	if (pixel[X] == res->x)

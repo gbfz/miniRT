@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   quaternion.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 12:39:49 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 21:02:52 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/quaternion_operations.h"
 
 double	get_angle(double u[3], double v[3])
@@ -45,18 +33,14 @@ double	*get_quaternion(double cam[3], double default_camera_direction[3])
 	if (axis[0] == 0 && axis[1] == 0 && axis[2] == 0)
 		axis[1] = 1;
 	sine = sin(angle / 2);
-	;
 	quaternion = malloc(sizeof(double) * 4);
 	if (quaternion == NULL)
 		exit_error("Malloc failed");
-	;
 	quaternion[0] = cos(angle / 2);
 	quaternion[1] = axis[0] * sine;
 	quaternion[2] = axis[1] * sine;
 	quaternion[3] = axis[2] * sine;
-	;
 	normalize_quaternion(quaternion);
-	;
 	free(axis);
 	return (quaternion);
 }

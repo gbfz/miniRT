@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_intensity.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 19:41:35 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/17 18:30:03 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
-static void		set_light_ray(double ray[3], double point[3],
-								double light_coords[3])
+static void	set_light_ray(double ray[3], double point[3],
+			      double light_coords[3])
 {
 	ray[0] = point[0] - light_coords[0];
 	ray[1] = point[1] - light_coords[1];
@@ -21,7 +9,7 @@ static void		set_light_ray(double ray[3], double point[3],
 	normalize(ray);
 }
 
-static void		invert_normal(double normal[3])
+static void	invert_normal(double normal[3])
 {
 	normal[0] *= -1;
 	normal[1] *= -1;
@@ -29,7 +17,7 @@ static void		invert_normal(double normal[3])
 }
 
 static double	get_n_dot_l(t_params *obj, double light_ray[3],
-							double cam_ray[3])
+			    double cam_ray[3])
 {
 	double normal_dot_light;
 	double camera_dot_normal;
@@ -41,8 +29,8 @@ static double	get_n_dot_l(t_params *obj, double light_ray[3],
 	return (normal_dot_light);
 }
 
-double			get_intensity(t_light *light, t_params *obj,
-								t_cam *cam, t_scene *scene)
+double		get_intensity(t_light *light, t_params *obj,
+			      t_cam *cam, t_scene *scene)
 {
 	double	intensity;
 	double	light_ray[3];

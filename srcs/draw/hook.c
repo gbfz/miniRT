@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 19:30:39 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:42:52 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
-int		key_hook(int key, t_data *data)
+int	key_hook(int key, t_data *data)
 {
 	if (key == 53)
 		exit(0);
@@ -26,7 +14,7 @@ int		key_hook(int key, t_data *data)
 	return (0);
 }
 
-int		exit_hook(int button, int x, int y, t_data *data)
+int	exit_hook(int button, int x, int y, t_data *data)
 {
 	(void)button;
 	(void)x;

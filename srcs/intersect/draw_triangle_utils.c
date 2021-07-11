@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_triangle_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:44:53 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 21:15:23 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 void	set_triangle_params(double point[3], double normal[3],
-									t_tri *tri, t_params *current)
+			    t_tri *tri, t_params *current)
 {
 	current->id = 4;
 	current->colors = tri->colors;

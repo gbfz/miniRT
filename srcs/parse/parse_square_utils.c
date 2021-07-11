@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_square_utils.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 13:13:33 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/17 18:35:30 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
-#include "../list_management/alt_libft.h"
+#include "../list_management/list_management.h"
 
 static void		set_inverted_vector(double inverted_vector[3], double vector[3])
 {

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_color.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 19:40:35 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/16 14:07:24 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 static double	min(double a, double b)
@@ -20,7 +8,7 @@ static double	min(double a, double b)
 }
 
 static double	*get_coeff_light(t_light *light, t_params *obj,
-									t_cam *cam, t_scene *scene)
+		 t_cam *cam, t_scene *scene)
 {
 	double	*coeff_light;
 	double	local_intensity;
@@ -39,9 +27,9 @@ static double	*get_coeff_light(t_light *light, t_params *obj,
 	return (coeff_light);
 }
 
-int				get_color(t_params *obj, t_scene *scene, t_cam *cam)
+int	get_color(t_params *obj, t_scene *scene, t_cam *cam)
 {
-	int		color;
+	int	color;
 	double	coeff_amb[3];
 	double	*coeff_light;
 
@@ -49,15 +37,13 @@ int				get_color(t_params *obj, t_scene *scene, t_cam *cam)
 	coeff_amb[1] = scene->amb->ratio * scene->amb->colors[1] / 255;
 	coeff_amb[2] = scene->amb->ratio * scene->amb->colors[2] / 255;
 	coeff_light = get_coeff_light(scene->light, obj, cam, scene);
-	;
 	color = 0;
 	color |= ((int)min(obj->colors[0] *
-						(coeff_amb[0] + coeff_light[0]), 255)) << 16;
+			  (coeff_amb[0] + coeff_light[0]), 255)) << 16;
 	color |= ((int)min(obj->colors[1] *
-						(coeff_amb[1] + coeff_light[1]), 255)) << 8;
+			  (coeff_amb[1] + coeff_light[1]), 255)) << 8;
 	color |= ((int)min(obj->colors[2] *
-						(coeff_amb[2] + coeff_light[2]), 255));
-	;
+			   (coeff_amb[2] + coeff_light[2]), 255));
 	free(coeff_light);
 	return (color);
 }

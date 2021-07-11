@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_cylinder.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/14 13:40:51 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 20:55:27 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 static double	*get_normal(double point[3], t_cylinder *cyl)
@@ -34,7 +22,7 @@ static void		set_o_c(t_cylinder *cyl, double o_c[3], double origin[3])
 }
 
 static void		set_current_params(double point[3], t_cylinder *cyl,
-									t_params *current)
+					   t_params *current)
 {
 	current->colors = cyl->colors;
 	current->point = point;
@@ -42,7 +30,7 @@ static void		set_current_params(double point[3], t_cylinder *cyl,
 }
 
 static int		check_if_within_borders(double t, t_cylinder *cyl,
-										double ray[3], double o_c[3])
+						double ray[3], double o_c[3])
 {
 	cyl->m = dot(ray, cyl->vector) * t + dot(o_c, cyl->vector);
 	if (cyl->m >= 0 && cyl->m <= cyl->height)
@@ -51,7 +39,7 @@ static int		check_if_within_borders(double t, t_cylinder *cyl,
 }
 
 double			intersect_cylinder(void *obj, double ray[3],
-									t_params *current, double origin[3])
+					   t_params *current, double origin[3])
 {
 	t_cylinder	*cyl;
 	double		o_c[3];

@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_square.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/14 19:12:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/16 14:06:14 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
 
 static void		set_current_params(double point[3],
-									t_square *sq, t_params *current)
+					   t_square *sq, t_params *current)
 {
 	current->colors = sq->colors;
 	current->point = point;
@@ -37,8 +25,7 @@ static void		set_c_o(double c_o[3], double coords[3], double origin[3])
 	c_o[2] = coords[2] - origin[2];
 }
 
-static int		check_if_within_borders(double point[3], t_square *sq)
-{
+static int		check_if_within_borders(double point[3], t_square *sq) {
 	if (get_orient(point, sq->vertices[0], sq->vertices[1], sq->vector) >= 0)
 		return (no_inter_free(&point));
 	if (get_orient(point, sq->vertices[1], sq->vertices[2], sq->vector) >= 0)
@@ -51,7 +38,7 @@ static int		check_if_within_borders(double point[3], t_square *sq)
 }
 
 double			intersect_square(void *obj, double ray[3],
-								t_params *current, double origin[3])
+					 t_params *current, double origin[3])
 {
 	t_square	*sq;
 	double		dot_n_ray;

@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:20:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/17 18:34:53 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
-#include "../list_management/alt_libft.h"
+#include "../list_management/list_management.h"
 
 char	*get_id(char *line)
 {
@@ -31,9 +19,9 @@ void	check_file(int ac, char **av)
 		exit_error("Too many arguments supplied");
 	if (ac < 2)
 		exit_error("No file");
-	if (ft_strcmp(av[1] + ft_strlen(av[1]) - 3, ".rt\0") != 0)
+	if (ft_strcmp(av[1] + ft_strlen(av[1]) - 3, ".rt") != 0)
 		exit_error("Wrong file format");
 	if (ac == 3)
-		if (ft_strcmp(av[2], "--save\0") != 0)
+		if (ft_strcmp(av[2], "--save") != 0)
 			exit_error("Wrong second argument (\"--save\" only)");
 }

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 22:09:31 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/15 13:39:16 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/parser.h"
 
 static int	ft_isfloat(char *str)
@@ -25,7 +13,7 @@ static int	ft_isfloat(char *str)
 	return (1);
 }
 
-int			ft_isnumber(char *str)
+int		ft_isnumber(char *str)
 {
 	int		size;
 	char	*save;
@@ -53,7 +41,7 @@ static int	check_block(char **line)
 {
 	if (ft_isnumber(*line))
 		while (ft_isdigit(**line) || **line == '.' ||
-							**line == '-' || **line == '+')
+				  **line == '-' || **line == '+')
 			(*line)++;
 	else
 		return (1);

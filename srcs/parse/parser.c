@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meldora <meldora@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 15:03:59 by meldora           #+#    #+#             */
-/*   Updated: 2021/03/17 18:36:50 by meldora          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minirt.h"
-#include "../list_management/alt_libft.h"
+#include "../list_management/list_management.h"
 
 static int		parse_params(char *id, char *line, t_scene *scene)
 {
@@ -73,11 +61,11 @@ static int		parse_line(char *line, t_scene *scene)
 		return (-1);
 	line += ft_strlen(id);
 	if (ft_strcmp(id, "R\0") == 0 || ft_strcmp(id, "A\0") == 0 || \
-			ft_strcmp(id, "c\0") == 0 || ft_strcmp(id, "l\0") == 0)
+	    ft_strcmp(id, "c\0") == 0 || ft_strcmp(id, "l\0") == 0)
 		return (parse_params(id, line, scene));
 	else if (ft_strcmp(id, "pl\0") == 0 || ft_strcmp(id, "sp\0") == 0 || \
-			ft_strcmp(id, "sq\0") == 0 || ft_strcmp(id, "cy\0") == 0 || \
-			ft_strcmp(id, "tr\0") == 0)
+		 ft_strcmp(id, "sq\0") == 0 || ft_strcmp(id, "cy\0") == 0 || \
+		 ft_strcmp(id, "tr\0") == 0)
 		return (parse_objects(id, line, scene));
 	else
 		exit_error("Wrong parameter supplied");
