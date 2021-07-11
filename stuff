@@ -1,8 +1,0 @@
-gcc -lmlx -framework OpenGL -framework AppKit test.c
-gcc get_next_line/*.c libft/*.c alt_libft/*.c parser.c; ./a.out
-gcc get_next_line/*.c libft/*.c alt_libft/*.c parser.c everything.c -lmlx -framework OpenGl -framework Appkit; ./a.out config.rt
-gcc -lmlx -framework OpenGl -framework Appkit get_next_line/*.c libft/*.c alt_libft/*.c parser.c vector.c quaternion.c matrix.c draw_sphere.c; ./a.out config2.rt
-
-перевести координаты луча в сферические координаты, развернуть настолько, насколько отличается дефолтный вектор камеры от конфижного, и перейти обратно в декартовы координаты
-
-https://youtu.be/V4sjcPeVRck?t=1576
