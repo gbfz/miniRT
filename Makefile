@@ -79,8 +79,8 @@ deps		:= $(patsubst %.o,%.d,$(objs))
 DEPFLAGS	= -MMD -MF $(@:.o=.d)
 
 $(NAME):	$(objs)
-		make -C srcs/minilibx_mms_20200219 && cp srcs/minilibx_mms_20200219/libmlx.dylib .
 		make -C srcs/libft && cp srcs/libft/libft.a .
+		make -C srcs/minilibx_mms_20200219 && cp srcs/minilibx_mms_20200219/libmlx.dylib .
 		$(CC) $(CFLAGS) -O3 -I./includes libmlx.dylib libft.a -framework OpenGL -framework AppKit $^ -o $@
 
 libft:		srcs/libft/*.d
